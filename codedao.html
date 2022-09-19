@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+
+<meta charset="UTF-8">
+<title>Title</title>
+<head>
+  <script src="Students.js"></script>
+</head>
+<body>
+<!--narba-->
+<nav class="navbar navbar-expand-lg navbar-primary">
+  <a class="navbar-brand" href="#">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">register  <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">login</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        tours
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#">Nam Phương tourist</a>
+      </li>
+    </ul>
+
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">login</button>
+    </form>
+  </div>
+</nav>
+
+<h1 style="text-align: center">----------------students manage-----------------------</h1> <br>
+<label id="validate"></label>
+
+<!-- from create-->
+<div class="container" style="text-align: center">
+  <div class="row">
+    <div class="col-12">
+      <div class="input-group mb-3">
+        <input id="name" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2">
+        <div class="input-group-append">
+          <span class="input-group-text">NAME</span>
+        </div>
+      </div>
+      <div class="input-group mb-3">
+        <input id="address" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2">
+        <div class="input-group-append">
+          <span class="input-group-text" >ADDRESS</span>
+        </div>
+      </div>
+      <div class="input-group mb-3">
+        <input id="age" type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2">
+        <div class="input-group-append">
+          <span class="input-group-text" >AGE</span>
+        </div>
+      </div>
+
+      <button class="btn btn-primary" onclick="createStudent()" >create student</button>
+
+      <nav class="navbar navbar-light bg-light justify-content-between">
+        <a class="navbar-brand"></a>
+
+          <input id="search" oninput="searchStudent()" class="form-control mr-sm-2" type="search" placeholder="Please fill in the form to Search" aria-label="Search">
+          <button onclick="searchStudent()" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+
+      </nav>
+
+
+      <!--            end create-->
+      <!--                table-->
+      <table class="table">
+        <tr class="table-primary">
+          <th>STT</th>
+          <th>TOUR</th>
+          <th>HÀNH TRÌNH</th>
+          <th>GIÁ TOUR <br>
+            (tính 1 par)</th>
+          <th>EDIT</th>
+          <th>DELETE</th>
+        </tr>
+        <tbody id="drawTable">
+
+        </tbody>
+      </table>
+      <!--                end table-->
+
+    </div>
+  </div>
+</div>
+<br>
+
+
+
+
+<script>
+  let student1= new Students (1,'Sapa tour', '3ngày/2đêm', '1.250.000' );
+  let student2= new Students(2, 'Hạ Long', '2ngày/đêm', '920.000');
+  let student3=new Students(3,'Bà Nà', '4ngày/3đêm', '2.790.000')
+   let student4=new Students(4, 'Cù Lao Chàm', '4ngày/3đêm', '3.950.000đ',)
+  let student5 =  new Students(5, 'Sầm Sơn', '2ngày/đêm', '550.000đ')
+
+  let studentList=[];
+  studentList.push(student1, student2, student3, student4, student5)
+  console.log('------------------', studentList);
+
+  function showListStudent(){
+    let drawTable = ' ';
+    let classColor= ' ';
+    for (let i = 0; i < studentList.length ; i++) {
+      if (i%2==0) {
+        classColor = 'table-success'
+      }else{
+        classColor='table-danger'
+      }
+      drawTable+= `<tr class="${classColor}">
+                        <td>${i+1}</td>
+                         <td>${studentList[i].name}</td>
+                         <td>${studentList[i].address}</td>
+                         <td>${studentList[i].age}</td>
+                         <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="${studentList[i].id}"><i class="bi bi-wrench-adjustable"></i></button></td>
+                         <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" data-whatever="${studentList[i].id}">delete</button></td>
+                        </tr>
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Name:</label>
+                        <input type="text" class="form-control" id="edit_name">
+                    </div>
+                    <div class="form-group">
+                        <label for="message-text" class="col-form-label">Address:</label>
+                        <input id="edit_address" class="form-control" id="message_address">
+                    </div>
+                    <div class="form-group">
+                        <label for="message-text" class="col-form-label">Age:</label>
+                        <input id="edit_age" class="form-control" id="message_age">
+                    </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-danger" onclick="updateStudent()" data-dismiss="modal">Update student</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" >do you want delete</h5>
+        <button id="deleteStudent" type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button  onclick="deleteStudent()" type="button" class="btn btn-primary" data-dismiss="modal">delete</button>
+
+      </div>
+    </div>
+  </div>
+</div>
+`
+      let idUpdate;
+      let idDelete;
+    }
+    document.getElementById('drawTable').innerHTML=drawTable;
+    $('#exampleModal').on('show.bs.modal', function (event) {
+      var button = $(event.relatedTarget) // Button that triggered the modal
+      var recipient = button.data('whatever') // Extract info from data-* attributes
+      idUpdate= recipient;
+      // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+      // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+      var modal = $(this)
+      modal.find('.modal-title').text('Update Student: ' + recipient)
+      modal.find('.modal-body input').val(recipient)
+    })
+    $('#exampleModalCenter').on('show.bs.modal', function (event) {
+      var button = $(event.relatedTarget) // Button that triggered the modal
+      var recipient = button.data('whatever') // Extract info from data-* attributes
+      idDelete= recipient;
+      console.log('----------------', idDelete)
+      // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+      // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+      var modal = $(this)
+      modal.find('.modal-title').text('Update Student: ' + recipient)
+      modal.find('.modal-body input').val(recipient)
+    })
+  }
+  showListStudent()
+
+  function createStudent(){
+    let id = studentList[studentList.length-1].getId()+1;
+    let name = document.getElementById('name').value;
+    let address = document.getElementById('address').value;
+    let age = document.getElementById('age').value;
+    if (name.trim()=='' && address.trim()== ''  && age.trim()==''){
+      document.getElementById('validate').innerHTML=  `<label style="color: red">enter full fill</label>`
+      console.log()
+    }else{
+      let student = new Students (id, name, address, age);
+
+      studentList.push(student);
+    }
+
+    showListStudent();
+    }
+
+
+  function updateStudent(){
+    let editName = document.getElementById('edit_name').value;
+    let editAddress = document.getElementById('edit_address').value;
+    let editAge = document.getElementById('edit_age').value;
+    for (let i = 0; i < studentList.length ; i++) {
+      if (studentList[i].getId()==idUpdate){
+        studentList[i].setName(editName);
+        studentList[i].setAddress(editAddress);
+        studentList[i].setAge(editAge);
+      }
+    }
+    showListStudent()
+  }
+  function deleteStudent(){
+    for (let i = 0; i < studentList.length ; i++) {
+  if (studentList[i].getId()==idDelete){
+    studentList.splice(i,1)
+  }
+    }
+    showListStudent();
+  }
+
+  let searchStudentList = [];
+  function searchStudent() {
+searchStudentList=[];
+    let search = document.getElementById('search').value;
+
+    if (search.trim() == '') {
+     showListStudent()
+      return
+    } else {
+      // for (let i = 0; i < studentList.length; i++) {
+      //   if (search.toLowerCase() === studentList[i].name.toLowerCase()) {
+      //    searchStudentList.push(studentList[i]);
+      //     showListSearch()
+      //   }
+      // }
+      for (let i = 0; i < studentList.length; i++) {
+        if (studentList[i].getName().toLowerCase().search(search)!=-1) {
+          searchStudentList.push(studentList[i])
+        }
+      }
+      showListSearch()
+    }
+
+   }
+function showListSearch(){
+  let drawTable = ' ';
+  let classColor= ' ';
+  for (let i = 0; i <searchStudentList.length ; i++) {
+    if (i%2==0) {
+      classColor = 'table-success'
+    }else{
+      classColor='table-danger'
+    }
+    drawTable+= `<tr class="${classColor}">
+                        <td>${i+1}</td>
+                         <td>${searchStudentList[i].name}</td>
+                           <td>${searchStudentList[i].address}</td>
+                         <td>${searchStudentList[i].age}</td>
+                         <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="${searchStudentList[i].id}"><i class="bi bi-wrench-adjustable"></i></button></td>
+                         <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" data-whatever="${searchStudentList[i].id}">delete</button></td>
+                        </tr>
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Name:</label>
+                        <input type="text" class="form-control" id="edit_name">
+                    </div>
+                    <div class="form-group">
+                        <label for="message-text" class="col-form-label">Address:</label>
+                        <input id="edit_address" class="form-control" id="message_address">
+                    </div>
+                    <div class="form-group">
+                        <label for="message-text" class="col-form-label">Age:</label>
+                        <input id="edit_age" class="form-control" id="message_age">
+                    </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-danger" onclick="updateStudent()" data-dismiss="modal">Update student</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" >do you want delete</h5>
+        <button id="deleteStudent" type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button  onclick="deleteStudent()" type="button" class="btn btn-primary" data-dismiss="modal">delete</button>
+
+      </div>
+    </div>
+  </div>
+</div>
+`
+    let idUpdate;
+    let idDelete;
+  }
+  document.getElementById('drawTable').innerHTML=drawTable;
+  $('#exampleModal').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget) // Button that triggered the modal
+    var recipient = button.data('whatever') // Extract info from data-* attributes
+    idUpdate= recipient;
+    // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+    // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+    var modal = $(this)
+    modal.find('.modal-title').text('Update Student: ' + recipient)
+    modal.find('.modal-body input').val(recipient)
+  })
+  $('#exampleModalCenter').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget) // Button that triggered the modal
+    var recipient = button.data('whatever') // Extract info from data-* attributes
+    idDelete= recipient;
+    console.log('----------------', idDelete)
+    // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+    // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+    var modal = $(this)
+    modal.find('.modal-title').text('Update Student: ' + recipient)
+    modal.find('.modal-body input').val(recipient)
+  })
+}
+
+
+
+</script>
+
+
+<div class="row" style="text-align: center">
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Special title treatment</h5>
+        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Special title treatment</h5>
+        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<footer class="text-center text-lg-start" style="margin-left: -80px">
+  <div class="container p-4">
+    <img src="Fnatic_blackicon.png" width="50" height="50" style="margin-bottom: 10px; margin-left: -10px" alt="">
+    <div class="row">
+      <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+        <h5 class="title">About</h5>
+        <ul class="list-unstyled">
+          <li>
+            <a href="#!" class="text-reset">Our story</a>
+          </li>
+          <li>
+            <a href="#!" class="text-reset">Carrees</a>
+          </li>
+          <li>
+            <a href="#!" class="text-reset">Brand Guidelines</a>
+          </li>
+          <li>
+            <a href="#!" class="text-reset">Network</a>
+          </li>
+          <li>
+            <a href="#!" class="text-reset">Contact Us</a>
+          </li>
+          <li>
+            <a href="#!" class="text-reset">Wallpapers</a>
+          </li>
+        </ul>
+      </div>
+      <!--Grid column-->
+
+      <div class="col-lg-3 col-md-6 mb-4 mb-md-0" style="margin-left: -50px;">
+        <h5 class="title">Shop</h5>
+        <ul class="list-unstyled">
+          <li>
+            <a href="#!" class="text-reset">Help</a>
+          </li>
+          <li>
+            <a href="#!" class="text-reset">Downloads</a>
+          </li>
+          <li>
+            <a href="#!" class="text-reset">Shipping</a>
+          </li>
+          <li>
+            <a href="#!" class="text-reset">Return</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="col-lg-3 col-md-6 mb-4 mb-md-0" style="margin-left: -60px">
+        <h5 class="title">Policies</h5>
+        <ul class="list-unstyled">
+          <li>
+            <a href="#!" class="text-reset" >All Policies</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div >
+    <div style="margin-right: 30px">
+      <i class="bi bi-github" id="github"></i>
+      <i class="bi bi-discord" id="discord"></i>
+      <i class="bi bi-facebook" id="fb"></i>
+      <i class="bi bi-tiktok" id="tiktok"></i>
+      <i class="bi bi-instagram" id="ins"></i>
+      <i class="bi bi-youtube" id="utube"></i>
+      <i class="bi bi-twitch" id="twitch"></i>
+      <i class="bi bi-twitter" id="twitter"></i>
+    </div>
+    <br> <br>
+    <p id="copyRight">© 2004 - 2022, Fnatic Ltd, All rights reserved</p>
+    <br>
+  </div>
+</footer>
+
+<div id="messageIcon" onclick=""><i class="bi bi-chat-left-text"></i></div>
+
+<script>
+
+  //For Signup and Log in
+  let username = window.localStorage.getItem("USERNAME_KEY")
+  if (username!=null) {
+    document.getElementById("signUp").style.display = 'none';
+    document.getElementById("logIn").innerHTML = username;
+    document.getElementById("logOut").style.display = "block";
+    // For Modal Shopping Cart
+    let modal = document.getElementById("myModal");
+    let btn = document.getElementById("cartButton");
+    let close = document.getElementsByClassName("close")[0];
+    // tại sao lại có [0] như  thế này bởi vì mỗi close là một html colection nên khi mình muốn lấy giá trị html thì phải thêm [0].
+    // Nếu mình có 2 cái component cùng class thì khi [0] nó sẽ hiển thị component 1 còn [1] thì nó sẽ hiển thị component 2.
+    let close_footer = document.getElementsByClassName("close-footer")[0];
+    let order = document.getElementsByClassName("order")[0];
+    btn.onclick = function () {
+      modal.style.display = "block";
+    }
+    close.onclick = function () {
+      modal.style.display = "none";
+    }
+    close_footer.onclick = function () {
+      modal.style.display = "none";
+    }
+    order.onclick = function () {
+      alert("Cảm ơn bạn đã thanh toán đơn hàng")
+    }
+    window.onclick = function (event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+
+    // xóa cart
+    let remove_cart = document.getElementsByClassName("btn-danger");
+    for (let i = 0; i < remove_cart.length; i++) {
+      let button = remove_cart[i]
+      button.addEventListener("click", function () {
+                let button_remove = event.target
+                button_remove.parentElement.parentElement.remove()
+                updatecart();
+              }
+      )
+    }
+
+    // update cart
+    function updatecart() {
+      let cart_item = document.getElementsByClassName("cart-items")[0];
+      let cart_rows = cart_item.getElementsByClassName("cart-row");
+      let total = 0;
+      for (let i = 0; i < cart_rows.length; i++) {
+        let cart_row = cart_rows[i]
+        let price_item = cart_row.getElementsByClassName("cart-price")[0]
+        let quantity_item = cart_row.getElementsByClassName("cart-quantity-input")[0]
+        let price = parseFloat(price_item.innerText)// chuyển một chuổi string sang number để tính tổng tiền.
+        let quantity = quantity_item.value // lấy giá trị trong thẻ input
+        total = total + (price * quantity)
+      }
+      document.getElementsByClassName("cart-total-price")[0].innerText =  total + '€'
+      // Thay đổi text = total trong .cart-total-price. Chỉ có một .cart-total-price nên mình sử dụng [0].
+    }
+
+    // Thay đổi số lượng sản phẩm
+    let quantity_input = document.getElementsByClassName("cart-quantity-input");
+    for (let i = 0; i < quantity_input.length; i++) {
+      let input = quantity_input[i];
+      input.addEventListener("change", function (event) {
+        let input = event.target
+        if (isNaN(input.value) || input.value <= 0) {
+          input.value = 1;
+        }
+        updatecart()
+      })
+    }
+
+    // Thêm vào giỏ
+    let add_cart = document.getElementsByClassName("white-text");
+    for (let i = 0; i < add_cart.length; i++) {
+      let add = add_cart[i];
+      add.addEventListener("click", function (event) {
+        let button = event.target;
+        let product = button.parentElement.parentElement;
+        let img = product.getElementsByClassName("img-prd")[0].src
+        let title = product.getElementsByClassName("content-product-h3")[0].innerText
+        let price = product.getElementsByClassName("price")[0].innerText
+        addItemToCart(title, price, img)
+        // Khi thêm sản phẩm vào giỏ hàng thì sẽ hiển thị modal
+        modal.style.display = "block";
+        updatecart()
+      })
+    }
+
+    function addItemToCart(title, price, img) {
+      // Tạo ra một thẻ div tên là cartRow
+      let cartRow = document.createElement('div')
+      // Thêm class cart-row vào cho thẻ div đã tạo bên trên
+      cartRow.classList.add('cart-row')
+      let cartItems = document.getElementsByClassName('cart-items')[0]
+      let cart_title = cartItems.getElementsByClassName('cart-item-title')
+      // Nếu title của sản phẩm bằng với title mà bạn thêm vao giỏ hàng thì sẽ thông cho user.
+      for (let i = 0; i < cart_title.length; i++) {
+        if (cart_title[i].innerText == title) {
+          alert('Sản Phẩm Đã Có Trong Giỏ Hàng')
+          return
+        }
+      }
+
+      let cartRowContents = `
+      <div class="cart-item cart-column">
+          <img class="cart-item-image" src="${img}" width="100" height="100">
+          <span class="cart-item-title">${title}</span>
+      </div>
+      <span class="cart-price cart-column">${price}</span>
+      <div class="cart-quantity cart-column">
+          <input class="cart-quantity-input" type="number" value="1">
+          <button class="btn btn-danger" type="button">Delete</button>
+      </div> `
+
+      cartRow.innerHTML = cartRowContents
+      cartItems.append(cartRow)
+      cartRow.getElementsByClassName('btn-danger')[0].addEventListener('click', function () {
+        let button_remove = event.target
+        button_remove.parentElement.parentElement.remove()
+        updatecart()
+      })
+      cartRow.getElementsByClassName('cart-quantity-input')[0].addEventListener('change', function (event) {
+        let input = event.target
+        if (isNaN(input.value) || input.value <= 0) {
+          input.value = 1;
+        }
+        updatecart()
+      })
+    }
+  }
+
+
+  // For Log Out
+  function logOut () {
+    window.localStorage.clear();
+    window.location.reload();
+  }
+
+
+  if (username == null){
+    document.getElementById("cartButton").onclick = function () {
+      alert('You have not log in. Please log in now');
+    }
+
+    let add_cart = document.getElementsByClassName("white-text");
+    for (let i = 0; i < add_cart.length; i++) {
+      add_cart[i].onclick = function () {
+        alert('You have not log in. Please log in now');}
+    }
+  }
+</script>
+</body>
+</html>
